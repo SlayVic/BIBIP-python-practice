@@ -5,12 +5,15 @@
 Команди Git:
 ![git_commands](img/git.png)
 
+Insall tkinter by pip:
+![console_pip_install](img/pip-install-tkinker.png)
+
 ## SSH
 Сгенерував ключ:
-![generate_SSH](img/generate%20ssh.png)
+![generate_SSH](img/generate-ssh.png)
 
 Додав ssh в git:
-![add_SSH](img/SSH%20page.png)
+![add_SSH](img/SSH-page.png)
 
 Налаштував ssh для самого проекту:
-![alt](img/Make%20ssh%20for%20project%20at%20pc.png)
+![alt](img/Make-ssh-for-project-at-pc.png)
