@@ -73,3 +73,6 @@ if numbers:
           f'maximum number: {maxNumber}', '',
           f'numbers after powering: {numbersPowered}', sep="\n")
 ```
+
+## Git commit:
+![git commit](img/git-commit-in-console.png)
