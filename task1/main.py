@@ -26,8 +26,8 @@ while(i < len(lineSplit)):
             filter(lambda i: not i.isdecimal(), lineSplit[i]))
     i += 1
 
-for i in range(len(lineSplit)):
-    lineSplit[i] = lineSplit[i].title()[:-1] + lineSplit[i][-1].upper()
+lineSplit = list(map(lambda item: item.title()[:-1] 
+                     + item[-1].upper(),lineSplit))
 
 if numbers:
     maxNumber = max(numbers)

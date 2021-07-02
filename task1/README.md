@@ -47,8 +47,7 @@ digits = ''.join(filter(lambda i: i.isdecimal(), lineSplit[i]))
 ___
 ### Капіталізація першої та останньої літтери слова:
 ```py
-for i in range(len(lineSplit)):
-    lineSplit[i] = lineSplit[i].title()[:-1] + lineSplit[i][-1].upper()
+lineSplit = list(map(lambda item: item.title()[:-1] + item[-1].upper(),lineSplit))
 ```
 ___
 ### Математичні маніпуляції, данні у умові, з числами, лише якщо числа є:
