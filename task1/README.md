@@ -1,5 +1,5 @@
 # Task 1
-![work](img/work.png)
+![work](https://user-images.githubusercontent.com/43368065/124328677-c4e54500-db92-11eb-961d-900dea61eb73.png)
 
 ## Пояснення
 ___
@@ -75,4 +75,4 @@ if numbers:
 ```
 
 ## Git commit:
-![git commit](img/git-commit-in-console.png)
+![git-commit-in-console](https://user-images.githubusercontent.com/43368065/124328691-ca428f80-db92-11eb-98ba-82027db5751a.png)
