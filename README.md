@@ -3,17 +3,17 @@
 19 номер ⇒ 1 варіант
 
 Команди Git:
-![git_commands](img/git.png)
+![git](https://user-images.githubusercontent.com/43368065/124328725-d9294200-db92-11eb-93e2-e934a3dd9ef3.png)
 
 Insall tkinter by pip:
-![console_pip_install](img/pip-install-tkinker.png)
+![pip-install-tkinker](https://user-images.githubusercontent.com/43368065/124328733-ddedf600-db92-11eb-80e3-f948e615bd97.png)
 
 ## SSH
 Сгенерував ключ:
-![generate_SSH](img/generate-ssh.png)
+![generate-ssh](https://user-images.githubusercontent.com/43368065/124328740-e0e8e680-db92-11eb-81af-a0bc66b5a7b6.png)
 
 Додав ssh в git:
-![add_SSH](img/SSH-page.png)
+![SSH-page](https://user-images.githubusercontent.com/43368065/124328748-e47c6d80-db92-11eb-89fb-cf829e25843c.png)
 
 Налаштував ssh для самого проекту:
-![alt](img/Make-ssh-for-project-at-pc.png)
+![Make-ssh-for-project-at-pc](https://user-images.githubusercontent.com/43368065/124328761-e7775e00-db92-11eb-9e03-fc4ce54bf7d4.png)
