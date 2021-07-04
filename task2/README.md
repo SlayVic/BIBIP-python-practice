@@ -1,6 +1,6 @@
 # Task 2
 
-![Working-program](img/Working-program.png)
+![Working-program](https://user-images.githubusercontent.com/43368065/124388047-9a59d000-dce9-11eb-80b0-0ffc385a9e0c.png)
 
 ## Explanation of [calculator.py](calculator.py), file that calculate answers
 
@@ -253,4 +253,4 @@ def calculate(self, *tmp):
 ## Binary
 
 Sorry, I made not button for binary because my calculator inline, so I make command for binary
-![binary-showcase](img/binary.png)
+![binary](https://user-images.githubusercontent.com/43368065/124388052-9e85ed80-dce9-11eb-8bb0-7fcef721bda1.png)
