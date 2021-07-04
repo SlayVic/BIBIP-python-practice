@@ -3,133 +3,140 @@ import re
 # import math
 
 
-def simplify(expressio):
-    expressio = expressio.replace("Pi", "3.14159265359")
-    expressio = expressio.replace("pi", "3.14159265359")
+# * replace elements to make it more understandable
+def simplify(expression):
+    expression = expression.replace("Pi", "3.14159265359")
+    expression = expression.replace("pi", "3.14159265359")
 
-    expressio = expressio.replace("E", "2.7182818285")
+    expression = expression.replace("E", "2.7182818285")
 
-    expressio = expressio.replace(",", ".")
-    expressio = expressio.replace(";", ",")
-    expressio = expressio.replace("plus", "+")
-    expressio = expressio.replace("and", "+")
-    expressio = expressio.replace("with", "+")
+    expression = expression.replace(",", ".")
+    expression = expression.replace(";", ",")
+    expression = expression.replace("plus", "+")
+    expression = expression.replace("and", "+")
+    expression = expression.replace("with", "+")
 
-    expressio = expressio.replace("minus", "-")
-    expressio = expressio.replace("subtract", "-")
-    expressio = expressio.replace("without", "-")
+    expression = expression.replace("minus", "-")
+    expression = expression.replace("subtract", "-")
+    expression = expression.replace("without", "-")
 
-    expressio = expressio.replace("times", "*")
-    expressio = expressio.replace("multiplied by", "*")
-    expressio = expressio.replace("mul", "*")
-    expressio = expressio.replace("multiply", "*")
+    expression = expression.replace("times", "*")
+    expression = expression.replace("multiplied by", "*")
+    expression = expression.replace("mul", "*")
+    expression = expression.replace("multiply", "*")
 
-    expressio = expressio.replace("divide", "/")
-    expressio = expressio.replace("divide by", "/")
+    expression = expression.replace("divide", "/")
+    expression = expression.replace("divide by", "/")
 
-    expressio = expressio.replace("ctg", "1/tan")
-    expressio = expressio.replace("tg", "tan")
+    expression = expression.replace("ctg", "1/tan")
+    expression = expression.replace("tg", "tan")
 
-    ln = re.search(r'ln\([\w\d\+\-\*\/\.]+\)', expressio)
+    ln = re.search(r'ln\([\w\d\+\-\*\/\.]+\)', expression)
     while ln:
         ln_in_future = ln[0]
         ln_in_future = 'log('+ln_in_future[3:-1]+','+'2.7182818285)'
-        expressio = expressio.replace(ln[0], ln_in_future)
-        ln = re.search(r'ln\([\w\d\+\-\*\/\.]+\)', expressio)
+        expression = expression.replace(ln[0], ln_in_future)
+        ln = re.search(r'ln\([\w\d\+\-\*\/\.]+\)', expression)
 
-    lg = re.search(r'lg\([\w\d\+\-\*\/\.]+\)', expressio)
+    lg = re.search(r'lg\([\w\d\+\-\*\/\.]+\)', expression)
     while lg:
         lg_in_future = lg[0]
         lg_in_future = 'log('+lg_in_future[3:-1]+','+'10)'
-        expressio = expressio.replace(lg[0], lg_in_future)
-        lg = re.search(r'lg\([\w\d\+\-\*\/\.]+\)', expressio)
+        expression = expression.replace(lg[0], lg_in_future)
+        lg = re.search(r'lg\([\w\d\+\-\*\/\.]+\)', expression)
 
-    percent = re.search(r'[\+\-]\d+\.?\d*%', expressio)
+    percent = re.search(r'[\+\-]\d+\.?\d*%', expression)
     while percent:
         percent_in_future = percent[0]
         percent_in_future = '*'+str(eval(f'1{percent_in_future[:-1]}/100'))
-        expressio = expressio.replace(percent[0], percent_in_future)
-        percent = re.search(r'[\+\-\*\/]\d+\.?\d*%', expressio)
+        expression = expression.replace(percent[0], percent_in_future)
+        percent = re.search(r'[\+\-\*\/]\d+\.?\d*%', expression)
 
-    percent = re.search(r'\d+\.?\d*%', expressio)
+    percent = re.search(r'\d+\.?\d*%', expression)
     while percent:
         percent_in_future = percent[0]
         percent_in_future = str(eval(f'{percent_in_future[:-1]}/100'))
-        expressio = expressio.replace(percent[0], percent_in_future)
-        percent = re.search(r'[\+\-\*\/]\d+\.?\d*%', expressio)
+        expression = expression.replace(percent[0], percent_in_future)
+        percent = re.search(r'[\+\-\*\/]\d+\.?\d*%', expression)
 
-    fact = re.search(r'\d+\.?\d*\!', expressio)
+    fact = re.search(r'\d+\.?\d*\!', expression)
     while fact:
         fact_in_future = fact[0]
         fact_in_future = 'factorial('+fact_in_future[:-1]+')'
-        expressio = expressio.replace(fact[0], fact_in_future)
-        fact = re.search(r'\d+\.?\d*!', expressio)
+        expression = expression.replace(fact[0], fact_in_future)
+        fact = re.search(r'\d+\.?\d*!', expression)
 
-    expressio = expressio.replace(" ", "")
-    print(expressio)
-    return expressio
+    expression = expression.replace(" ", "")
+    print(expression)
+    return expression
 
 
-def searchFunction(expressio, text_of_func, func):
-    while(True):
+# * Search all function in expression without function inside
+def searchFunction(expression, text_of_func, func):
+    while(True):  # * loop to search all
         isEndFirst = False
 
+        # * regex to search function
+        #! f*ck regex.
         found = re.search('{}'.format(text_of_func) +
-                          r'\(([^\(\)\D]|,|\.|\+|\*|\/|-)*\)', expressio)
-        if found:
-            step = found[0][len(text_of_func)+1:-1]
+                          r'\(([^\(\)\D]|,|\.|\+|\*|\/|-)*\)', expression)
+        if found:  # * if found
+            step = found[0][len(text_of_func)+1:-1]  # * get funcion variables
+            # * split if have 2 instead of 1 line in log, it only for log
             steps = step.split(',')
-            print(steps)
+            print(steps)    # print step in console for debug
             stepAnswer = 0
+            # * get answer of funcion by using eval
             if len(steps) <= 1:
                 stepAnswer = str(func(eval(steps[0])))
             else:
                 stepAnswer = str(func(eval(steps[0]), float(steps[1])))
+            # * Print for debug
             print(f'{text_of_func}({step}) = {stepAnswer}')
-            expressio = expressio.replace(
+            # * Edit expression with result
+            expression = expression.replace(
                 f'{text_of_func}({step})', stepAnswer)
-        else:
-            isEndFirst = True
+        else:  # * if not found anything exit from function
             print(f"No steps for {text_of_func}()")
-
-        if isEndFirst:
-            break
-    return expressio
+            return expression
 
 
-
+# * list of functions
 functions = [('cos', cos), ('sin', sin), ('tan', tan),
-             ('log', log), ('factorial', factorial),('sqrt',sqrt)]
+             ('log', log), ('factorial', factorial), ('sqrt', sqrt)]
 
 
-def calculate(expressio):
-    expressio = simplify(expressio)
-    was = ''
+# * Function that calculate expression
+def calculate(expression):
+    was = ''  # * old expression
     try:
-        while expressio != was:
-            was = expressio
-            for func in functions:
-                expressio = searchFunction(expressio, func[0], func[1])
-        
+        while expression != was:
+            expression = simplify(expression)  # * make expression simple
+            was = expression  # * save as old expression
+            for func in functions:  # * search all functions in expression
+                expression = searchFunction(expression, func[0], func[1])
+
+        # * search highest brackets expression
         while True:
-            found = re.search(r'\([^\(\)]*\)', expressio)
+            # * by f*cking regex
+            found = re.search(r'\([^\(\)]*\)', expression)
             if found:
-                step = found[0][1:-1]
-                stepAnswer = str(eval(step))
-                print(f'({step}) = {stepAnswer}')
-                expressio = expressio.replace(f'({step})', stepAnswer)
-            else:
+                step = found[0][1:-1]  # * step without brackets
+                stepAnswer = str(eval(step))  # * calculate by eval
+                print(f'({step}) = {stepAnswer}')  # * print step for debug
+                # * change old step with step answer
+                expression = expression.replace(f'({step})', stepAnswer)
+            else:  # * when not having brackets
                 print("No steps for ()")
-                break
-        return eval(expressio)
-        # if re.match(r'\d+\.?\d*', expressio):
-        #     pass
-    except:
+                break  # * exit from loop
+        # * return calculated func in case if final expression have +-*/ but not in brackets
+        return eval(expression)
+    except:  # * if something get wrong
         return 'Cant'
 
 
+# * debug
 if __name__ == "__main__":
-    expressio = "sin(ln(E))"
+    expression = "ln(sin(E))"
 
-    print(calculate(expressio))
-    # print()
+    print(calculate(expression))
