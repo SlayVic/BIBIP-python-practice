@@ -2,3 +2,5 @@ tkinker
 **/img
 **/__pycache__
 **/__pycache__/*.pyc
+task3/ua.json
+task3/eu.json
