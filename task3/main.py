@@ -1,5 +1,5 @@
-from PyQt5 import QtWidgets, QTableWidget
 import PyQt5 as qt
+from PyQt5 import QtWidgets
 from c19_ui import Ui_MainWindow
 import sys
 
