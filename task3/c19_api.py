@@ -71,7 +71,7 @@ class C19_info:
             for key in country.keys():
                 if key in self.table_not_include:
                     continue
-                table[key].append(country[key])
+                table[key].append(str(country[key]))
         return table
 
 
