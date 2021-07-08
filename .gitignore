@@ -4,3 +4,4 @@ tkinker
 **/__pycache__/*.pyc
 task3/ua.json
 task3/eu.json
+.vscode/settings.json
