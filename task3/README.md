@@ -18,3 +18,5 @@ Design I'm "stole" from [sergden2021](https://github.com/sergden2021) while her 
 Explanation how does it work exist as comments in [C19_api.py](c19_api.py)
 and
 [main.py](main.py)
+
+and on this [video](https://www.youtube.com/watch?v=dQw4w9WgXcQ) xD
