@@ -19,4 +19,4 @@ Explanation how does it work exist as comments in [C19_api.py](c19_api.py)
 and
 [main.py](main.py)
 
-and on this [video](https://www.youtube.com/watch?v=dQw4w9WgXcQ) xD
+And in this [video](https://www.youtube.com/watch?v=dQw4w9WgXcQ) xD
