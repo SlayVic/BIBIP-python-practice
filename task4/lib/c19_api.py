@@ -3,7 +3,6 @@ import json
 
 """VACCOVID - coronavirus, vaccine and treatment tracker"""
 
-
 # * Library class
 class C19_info:
 
@@ -85,7 +84,7 @@ class C19_info:
         # * Err if data is void
         assert len(self.data) > 0, "Wrong country name"
 
-    # * json keys that will not include to the table
+    # * json keys that commonty used by user
     common_keys = [
         "TotalCases",
         "TotalDeaths",
@@ -100,20 +99,46 @@ class C19_info:
     ]
 
     def get_valid_keys(self):
+        """Get keys that user can use for current data
+
+        Yields:
+            str: key
+        """
         for key in self.common_keys:
             if key in self.data[0]:
                 yield key
 
     def get_sorted_data(self, key):
+        """Get sorted data by key ↓ from hight to low
+
+        Args:
+            key (str): key to sort by
+
+        Returns:
+            json(list of dicts): data that sort by key
+        """
+
         data = self.data
         data.sort(key=lambda i: int(i[key]), reverse=True)
         return data
 
     def get_cool_text(self, key):
+        """Get line of cool styled text
+
+        Args:
+            key (str): key to sort
+
+        Yields:
+            str: line of cool styled text
+        """
+
         data = self.get_sorted_data(key)
+
+        # chose it country or province
         place_key = "Country" if "Country" in data[0] else "province"
-        yield place_key + " " * (36 - len(place_key + key)) + key + "\n"
+        yield place_key + " " * (36 - len(place_key + key)) + key + "\n" # ret first line
         for item in data:
+            # return each line of statistic
             yield (
                 item[place_key]
                 + " " * (36 - len(item[place_key] + key))
