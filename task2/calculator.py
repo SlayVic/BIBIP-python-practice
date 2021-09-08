@@ -74,8 +74,6 @@ def simplify(expression):
 # * Search all function in expression without function inside
 def searchFunction(expression, text_of_func, func):
     while(True):  # * loop to search all
-        isEndFirst = False
-
         # * regex to search function
         #! f*ck regex.
         found = re.search('{}'.format(text_of_func) +

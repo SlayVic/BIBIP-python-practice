@@ -41,48 +41,49 @@ async def start(message: types.Message):
 
 @dp.message_handler()
 async def menu(message: types.Message):
-    """Fuction that react when getting any message
+    """Function that react when getting any message
     and send getting text to c19 api, to get statistic
     """
 
-    if message.chat.type == "private" and not message.text.startswith("/"):
-        c19 = C19_info()
-        try:
-            # update info to get error if cant get data
-            c19.update_data_with(message.text)
+    if message.chat.type != "private" or message.text.startswith("/"):
+        return
+    c19 = C19_info()
+    try:
+        # update info to get error if cant get data
+        c19.update_data_with(message.text)
 
-            # make country at meddle of msg
-            text = "—" * ((36 - len(message.text)) // 2) + message.text
-            text += "—" * (36 - len(text))
-            text = f"```\n{text}\n```"
+        # make country at meddle of msg
+        text = "—" * ((36 - len(message.text)) // 2) + message.text
+        text += "—" * (36 - len(text))
+        text = f"```\n{text}\n```"
 
-            # make inline keyboard with keys to send stats
-            markup = types.InlineKeyboardMarkup()
-            for key in c19.get_valid_keys():
-                markup.insert(
-                    types.InlineKeyboardButton(
-                        key, callback_data=f"country:{key}:{message.text}"
-                    )
+        # make inline keyboard with keys to send stats
+        markup = types.InlineKeyboardMarkup()
+        for key in c19.get_valid_keys():
+            markup.insert(
+                types.InlineKeyboardButton(
+                    key, callback_data=f"country:{key}:{message.text}"
                 )
+            )
 
-            # send msg
-            await message.answer(
-                text,
-                parse_mode="markdown",
-                reply_markup=markup,
-            )
-        except Exception as e:  # if can't update print exception and send user msg that he fuck up
-            print(e)
-            markup = types.ReplyKeyboardMarkup(
-                resize_keyboard=True, one_time_keyboard=True
-            )
-            for region in C19_info.regions:
-                markup.insert(region)
-            await message.answer(
-                "Wrong name, try again",
-                parse_mode="markdown",
-                reply_markup=markup,
-            )
+        # send msg
+        await message.answer(
+            text,
+            parse_mode="markdown",
+            reply_markup=markup,
+        )
+    except Exception as e:  # if can't update print exception and send user msg that he fuck up
+        print(e)
+        markup = types.ReplyKeyboardMarkup(
+            resize_keyboard=True, one_time_keyboard=True
+        )
+        for region in C19_info.regions:
+            markup.insert(region)
+        await message.answer(
+            "Wrong name, try again",
+            parse_mode="markdown",
+            reply_markup=markup,
+        )
 
 
 @dp.callback_query_handler(lambda c: c.data.startswith("country:"))

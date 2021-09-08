@@ -27,7 +27,7 @@ while i < len(lineSplit):
 lineSplit = list(map(lambda item: item.title()[:-1] + item[-1].upper(), lineSplit))
 
 maxNumber = 0
-numbersPowered = list()
+numbersPowered = []
 if numbers:
     maxNumber = max(numbers)
     numbersPowered = list(

@@ -49,7 +49,6 @@ class C19_info:
                 cls.all_countries[country["TwoLetterSymbol"].lower()] = country[
                     "ThreeLetterSymbol"
                 ].lower()
-        pass
 
     def update_data_with(self, country="europe"):
         """Update data variable with required data
